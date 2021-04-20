@@ -1,2 +1,3 @@
 # 8-Queens-on-ChessBoard
-The program uses backtracking to place 8 queens on the chess board, in a way that they won't attack each other.
+A chessboard contains 64 squares that form eight rows and eight columns. The most powerful piece in the game of chess is the queen, because it can attack any other piece within its row, within its col- umn, or along its diagonal. The Eight Queens problem asks you to place eight queens on the chess- board so that no queen can attack any other queen.
+
