@@ -44,8 +44,8 @@ bool Board::placeQueens(Queen* queenPtr)
         delete queenPtr;
         return true;
     } // end if
-    bool isQueenPlaced = false;
-    while (!isQueenPlaced && queenPtr->getRow() < BOARD_SIZE ){
+    bool isQueenSet = false;
+    while (!isQueenSet && queenPtr->getRow() < BOARD_SIZE ){
         // If the queen can be attacked, try moving it
         // to the next row in the current column
         if (queenPtr->isUnderAttack())
@@ -55,21 +55,16 @@ bool Board::placeQueens(Queen* queenPtr)
             // new queen in the first row of the next column
             setQueen(queenPtr);
             Queen* newQueenPtr = new Queen(0,queenPtr->getCol()+1);
-            
-            if(queenPtr->getCol() >-1 && queenPtr->getCol() < 9 ){
-                for(int i = -1; i <= BOARD_SIZE; i++){
-                    newQueenPtr = new Queen(0,i+1/2);
-                    isQueenPlaced = placeQueens(newQueenPtr);
-                }
-                if (!isQueenPlaced){
-                    delete newQueenPtr;
-                    removeQueen();
-                    queenPtr->nextRow();
-                } // end if
+            isQueenSet = placeQueens(newQueenPtr);
+            if (!isQueenSet){
+                delete newQueenPtr;
+                removeQueen();
+                queenPtr->nextRow();
+            } // end if
             }
-        } // end if
+
     } // end while
-    return isQueenPlaced;
+    return isQueenSet;
  }
 void Board::doEightQueens(Queen q) {
     placeQueens(new Queen(q.getRow(),q.getCol()));
